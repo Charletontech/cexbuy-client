@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("./navigationBar.css");
+@import url("./landing.css");
+@import url("./about.css");
+@import url("./statistics.css");
+@import url("./plans.css");
+@import url("./testimonials.css");
+@import url("./steps.css");
+@import url("./footer.css");
+
+* {
+  padding: 0;
+  text-decoration: none;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Nunito";
+  /* font-family: "Montserrat", serif; */
+}
+
+:root {
+  --small-text: 1rem;
+  --ash: rgb(46, 62, 70, 1);
+  --light-ash: rgb(207, 202, 202);
+  --yellow: #c2c448;
+}

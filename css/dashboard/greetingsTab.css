@@ -1,0 +1,43 @@
+.greetingsTab {
+  width: 100%;
+  height: auto;
+  padding: 2.3rem 2rem;
+}
+
+.greetingsTab p {
+  color: gray;
+}
+
+.greetingsTab h1 {
+  font-size: 3rem;
+  color: var(--text-ash);
+  font-weight: 400;
+}
+
+.greetingsTab div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.investNow {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media (max-width: 720px) {
+  .greetingsTab {
+    padding: 1.5rem 1rem;
+  }
+
+  .greetingsTab div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

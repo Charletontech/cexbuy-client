@@ -1,0 +1,144 @@
+nav {
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+nav img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.logoCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuCont {
+  display: flex;
+  gap: 4rem;
+}
+
+nav ul {
+  display: inline-flex;
+  gap: 3rem;
+  font-size: var(--small-text);
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--light-ash);
+  transition: 0.4s;
+}
+
+.menuItems li a:hover {
+  background: linear-gradient(to right, #3187f0, #c2c448);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: 0.5s;
+}
+
+.login {
+  padding: 6px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #3187f0, #c2c448);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.login:hover {
+  background: linear-gradient(to top, #c2c448, #3187f0);
+  transform: scale(1.05);
+}
+
+.login a {
+  color: white;
+}
+
+.signup {
+  border-radius: 15px;
+  position: relative;
+  padding: 6px 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.signup:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px; /* border length  */
+  background: linear-gradient(to right, #3187f0, #c2c448);
+  border-radius: inherit;
+  mask: conic-gradient(#000 0 0) content-box exclude, conic-gradient(#000 0 0);
+}
+
+.signup:hover {
+  transform: scale(1.05);
+}
+
+nav ul:nth-child(2) {
+  gap: 1.5rem;
+}
+
+.menuBtn {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  nav {
+  }
+  nav ul {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .menuCont {
+    position: fixed;
+    top: -1rem;
+    flex-direction: column;
+    gap: 3rem;
+    width: calc(100% + 30px);
+    margin-left: -15px;
+    height: 105vh;
+    background-color: var(--ash);
+    padding: 40px 25px;
+    align-items: flex-start;
+    z-index: 3;
+    transform: translate(100%);
+    transition: 1s;
+  }
+  .menuItems {
+    text-align: left;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .menuItems div {
+    width: 94%;
+    padding: 15px 0;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right, #3187f0, #c2c448) 1;
+  }
+
+  .menuBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .showMenu {
+    transform: translate(0);
+    transition: 1s;
+  }
+}

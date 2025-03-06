@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("./nav.css");
+@import url("./greetingsTab.css");
+@import url("./analytics.css");
+@import url("./plans.css");
+@import url("./activeInvestments.css");
+@import url("./modal.css");
+
+* {
+  padding: 0;
+  text-decoration: none;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Nunito";
+  /* font-family: "Montserrat", serif; */
+}
+
+:root {
+  --small-text: 1rem;
+  --ash: rgb(46, 62, 70, 1);
+  --light-ash: rgb(207, 202, 202);
+  --yellow: #c2c448;
+  --border: #e5e9f2;
+  --text-ash: #364a63;
+  --blue: #007bff;
+}
+
+.mainFrame {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  gap: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.contentContainer {
+  width: 75%;
+  height: 100%;
+  padding: 5px;
+}
+
+aside {
+  width: 25%;
+  border-right: 1px solid var(--border);
+  height: 100%;
+}
+
+.showMenu {
+  transform: translateX(0%);
+  position: fixed;
+}
+
+@media (min-width: 720px) {
+  aside {
+    position: fixed;
+  }
+
+  .contentContainer {
+    position: relative;
+    left: 25%;
+  }
+}
+
+@media (max-width: 720px) {
+  .contentContainer {
+    width: 100%;
+  }
+  aside {
+    width: 90%;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    transition: ease-out 0.3s;
+  }
+}

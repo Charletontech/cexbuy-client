@@ -1,0 +1,136 @@
+/* ===== Testimonials Section ===== */
+.testimonial-section {
+  position: relative;
+  background: rgba(39, 53, 59, 0.9);
+  color: var(--light-ash);
+  padding: 50px 20px 30px; /* Top/Bottom, Left/Right */
+  overflow: hidden; /* Hide overlay edges */
+}
+
+/* Overlay with a faint background image (Bitcoin, etc.) */
+.testimonial-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../../assets/african-business-male-people-sha.jpg")
+    center/cover no-repeat;
+  opacity: 1;
+  z-index: -1;
+  animation: animateBackground 20s ease-in-out infinite;
+}
+
+@keyframes animateBackground {
+  0% {
+    background-size: 100%;
+  }
+  50% {
+    background-size: 130%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}
+
+/* Container that holds the testimonial content */
+.testimonial-container {
+  position: relative;
+  z-index: 1; /* Above the overlay */
+  max-width: 1200px; /* Constrain width */
+  margin: 0 auto; /* Center horizontally */
+  text-align: center; /* Center title and intro text */
+}
+
+/* Section Title */
+.testimonial-container h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  color: white;
+}
+
+/* Intro Paragraph */
+.testimonial-intro {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+/* The row containing the image + testimonial text */
+.testimonial-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; /* Space between image and text */
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  margin-bottom: 30px; /* Spacing below the row */
+}
+
+/* Left side: Customer Image */
+.testimonial-left img {
+  width: 220px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+/* Right side: Testimonial Text */
+.testimonial-right {
+  max-width: 500px;
+  text-align: left;
+}
+
+/* Quoted text */
+.testimonial-quote {
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Author Name */
+.testimonial-author {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: white;
+}
+
+/* Location */
+.testimonial-location {
+  font-size: 0.9rem;
+  color: #ffe;
+}
+
+/* Navigation Arrows (simulating a carousel) */
+.testimonial-nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.nav-arrow {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-arrow:hover {
+  color: #ffd700; /* Gold on hover */
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .testimonial-content {
+    flex-direction: column; /* Stack image & text vertically */
+    text-align: center; /* Center text on smaller screens */
+  }
+
+  .testimonial-right {
+    text-align: center;
+  }
+}

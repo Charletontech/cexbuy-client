@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/signup/signup.css" />
+    <link rel="shortcut icon" href="../assets/logo.jpg" type="image/x-icon" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-image">
+        <div>
+          <div class="logoCont">
+            <img
+              src="../assets/6feee1ee-66a5-4168-b92a-000423d2ed92_removalai_preview.png"
+              alt="logo"
+            />
+            <h2>CexBuy</h2>
+          </div>
+        </div>
+      </div>
+      <form class="signup-form">
+        <h2>Sign Up</h2>
+        <div class="formCont">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              required
+              placeholder="Full Name"
+              name="fullName"
+            />
+          </div>
+          <div class="input-group">
+            <label>Country of Residence</label>
+            <input
+              type="text"
+              required
+              placeholder="Country of Residence"
+              name="country"
+            />
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" required placeholder="Email" name="email" />
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              required
+              placeholder="Password"
+              name="password"
+            />
+          </div>
+          <div class="input-group">
+            <label>Receiving Wallet Address</label>
+            <input
+              type="text"
+              required
+              placeholder="Receiving Wallet Address"
+              name="wallet"
+            />
+          </div>
+          <div class="input-group">
+            <label>Wallet Type</label>
+            <input
+              type="text"
+              required
+              placeholder="e.g TRC20"
+              name="walletType"
+            />
+          </div>
+        </div>
+        <button class="signup-btn" type="submit">Sign Up</button>
+
+        <div class="forgot-signup">
+          <a href="#"
+            >Already have an account? <span class="nav-arrow">&rarr;</span></a
+          >
+          <a href="http://127.0.0.1:5500/pages/login.html">Login</a>
+        </div>
+      </form>
+    </div>
+    <script src="../js/signup/signup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+.plans {
+  margin-top: 5rem;
+}
+
+.plans h1 {
+  font-size: 3rem;
+  color: var(--ash);
+  text-align: center;
+}
+
+/* Pricing Section Layout */
+.pricing-section {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+  gap: 20px;
+  padding: 50px;
+  justify-content: center;
+}
+
+.pricing-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+
+.pricing-card:hover .pricing-header {
+  background-image: url("../../assets/55067813.jpg");
+  animation: none;
+  background-size: 130%;
+  transition: 2s;
+}
+
+.pricing-card:hover {
+  border: 1px solid var(--light-ash);
+  transform: translateY(-5px);
+}
+
+/* Highlighted Plan */
+.highlighted {
+  border: 2px solid var(--light-ash);
+}
+
+/* Pricing Header */
+.pricing-header {
+  background-image: url("../../assets/Screenshot\ 2025-02-21\ 055934.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  animation: zoomInBackground 10s ease-in-out infinite;
+}
+
+/* header animation */
+@keyframes zoomInBackground {
+  0% {
+    background-size: 100%;
+  }
+  50% {
+    background-size: 130%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}
+
+.pricing-header div {
+  padding: 30px 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(46, 62, 70, 0.2);
+}
+
+.pricing-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.pricing-header p {
+  font-size: 1rem;
+  /* background: linear-gradient(to right, #3187f0, #c2c448);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; */
+  font-weight: bold;
+  color: white;
+}
+
+/* Features List */
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.pricing-features li {
+  font-size: 1rem;
+  color: #555;
+  padding: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pricing-section {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-section {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+}

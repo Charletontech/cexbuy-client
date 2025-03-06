@@ -1,0 +1,189 @@
+nav {
+  height: 4rem;
+  width: 100%;
+  background-color: white;
+  border-bottom: 0.5px solid #e5e9f2;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: gray;
+}
+
+/* menu and logo container div */
+nav div:nth-child(1) {
+  display: flex;
+  height: auto;
+  width: auto;
+  gap: 0;
+  visibility: hidden;
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+}
+
+.logoCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  transform: translateX(-10px);
+}
+
+.logoCont img {
+  width: 3rem;
+  height: 3rem;
+  transform: translateX(6px);
+}
+
+.logoCont h2 {
+  color: var(--ash);
+}
+
+nav button {
+  background: none;
+  border: none;
+  text-align: center;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 100%;
+  background: #f5f6fa;
+  padding: 20px;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar .closeBtn {
+  display: none;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.lite {
+  color: #4b7bec;
+}
+
+small {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Balance Section */
+.balance {
+  margin-top: 1rem;
+}
+.balance .title {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.balance h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.balance span {
+  font-size: 14px;
+  color: gray;
+}
+
+.user-email {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin: 1.3rem 0 2rem;
+}
+
+.deposit,
+.withdraw {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.deposit {
+  background: #007bff;
+  color: white;
+}
+
+.withdraw {
+  background: #ffcc00;
+  color: black;
+}
+
+/* Menu */
+.menu-title {
+  font-size: 12px;
+  color: gray;
+  margin-top: 2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 7px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: var(--ash);
+  border-radius: 11px;
+  border: 1px solid transparent;
+}
+
+li.active {
+  background: white;
+  border: 1px solid var(--border);
+}
+
+li:hover {
+  background: white;
+}
+
+@media (max-width: 720px) {
+  nav div:nth-child(1) {
+    visibility: visible;
+  }
+  nav i {
+    display: none;
+  }
+  .sidebar .closeBtn {
+    display: initial;
+  }
+}

@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+  padding: 0;
+  text-decoration: none;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Nunito";
+}
+
+:root {
+  --small-text: 1rem;
+  --ash: rgb(75, 91, 99);
+  --light-ash: rgb(207, 202, 202);
+  --yellow: #c2c448;
+}
+
+body {
+  background-color: #f4f8f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.fp-container {
+  display: flex;
+  width: 800px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fp-image {
+  width: 50%;
+  background: url("../../assets/business-partners-meeting-near-o.jpg")
+    center/cover no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: animateBackground 20s ease-in-out infinite;
+}
+
+@keyframes animateBackground {
+  0% {
+    background-size: 100%;
+  }
+  50% {
+    background-size: 130%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}
+.fp-image div {
+  width: 100%;
+  height: 100%;
+  background: rgba(75, 91, 99, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.logoCont img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.logoCont h2 {
+  color: white;
+  transform: translateX(-10px);
+}
+
+.fp-form {
+  width: 50%;
+  padding: 40px;
+  background: white;
+}
+
+.fp-form h2 {
+  margin-bottom: 20px;
+  color: var(--ash);
+  font-size: 2em;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+  color: var(--ash);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.7em;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.fp-btn {
+  width: 100%;
+  padding: 10px;
+  background: var(--ash);
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.fp-btn:hover {
+  background: linear-gradient(to right, #3187f0, #c2c448);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .fp-container {
+    flex-direction: column;
+    width: 90%;
+  }
+  .fp-image {
+    width: 100%;
+    height: 200px;
+  }
+  .fp-form {
+    width: 100%;
+    padding: 20px;
+  }
+}

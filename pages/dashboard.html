@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/dashboard/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Dashboard - CexBuy</title>
+  </head>
+  <body>
+    <div class="mainFrame">
+      <aside>
+        <div class="sidebar">
+          <svg
+            class="closeBtn"
+            style="margin-left: 95%"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="gray"
+          >
+            <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+          </svg>
+          <!-- Logo Section -->
+          <div
+            class="logoCont"
+            style="justify-content: flex-start; transform: translateX(-18px)"
+          >
+            <img
+              src="../assets/6feee1ee-66a5-4168-b92a-000423d2ed92_removalai_preview.png"
+              alt="logo"
+            />
+            <h2>CexBuy</h2>
+          </div>
+
+          <!-- Balance Info -->
+          <div class="balance">
+            <p class="title">AVAILABLE BALANCE</p>
+            <h2><span id="balance">0.00</span> <span>USD</span></h2>
+            <p class="user-email">test@mail.com</p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="buttons">
+            <button class="deposit fundBtn">DEPOSIT</button>
+            <button class="withdraw withdrawBtn">WITHDRAW</button>
+          </div>
+
+          <!-- Navigation Menu -->
+          <div class="menu">
+            <p class="menu-title">MENU</p>
+            <ul>
+              <li class="active">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="gray"
+                >
+                  <path
+                    d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                  />
+                </svg>
+                Dashboard
+              </li>
+
+              <li class="fundBtn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="gray"
+                >
+                  <path
+                    d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"
+                  />
+                </svg>
+                Fund Wallet
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="gray"
+                >
+                  <path
+                    d="M160-200h160v-320H160v320Zm240 0h160v-560H400v560Zm240 0h160v-240H640v240ZM80-120v-480h240v-240h320v320h240v400H80Z"
+                  />
+                </svg>
+                Active Invesments
+              </li>
+              <li class="withdrawBtn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="gray"
+                >
+                  <path
+                    d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"
+                  />
+                </svg>
+                Withdrawal
+              </li>
+
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="gray"
+                >
+                  <path
+                    d="M320-280q17 0 28.5-11.5T360-320q0-17-11.5-28.5T320-360q-17 0-28.5 11.5T280-320q0 17 11.5 28.5T320-280Zm0-160q17 0 28.5-11.5T360-480q0-17-11.5-28.5T320-520q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440Zm0-160q17 0 28.5-11.5T360-640q0-17-11.5-28.5T320-680q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Zm120 320h240v-80H440v80Zm0-160h240v-80H440v80Zm0-160h240v-80H440v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Plans
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="gray"
+                >
+                  <path
+                    d="M806-440H320v-80h486l-62-62 56-58 160 160-160 160-56-58 62-62ZM600-600v-160H200v560h400v-160h80v160q0 33-23.5 56.5T600-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h400q33 0 56.5 23.5T680-760v160h-80Z"
+                  />
+                </svg>
+                Log Out
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="contentContainer">
+        <nav>
+          <div>
+            <div class="menuBtn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30px"
+                viewBox="0 -960 960 960"
+                width="30px"
+                fill=" rgb(46, 62, 70)"
+              >
+                <path
+                  d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+                />
+              </svg>
+            </div>
+            <div class="logoCont">
+              <img
+                src="../assets/6feee1ee-66a5-4168-b92a-000423d2ed92_removalai_preview.png"
+                alt="logo"
+              />
+              <h2>CexBuy</h2>
+            </div>
+          </div>
+          <p><i>always check your notification for important messages...</i></p>
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="30"
+              height="30"
+              viewBox="0,0,256,256"
+            >
+              <g
+                fill="none"
+                fill-rule="nonzero"
+                stroke="none"
+                stroke-width="1"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+                stroke-miterlimit="10"
+                stroke-dasharray=""
+                stroke-dashoffset="0"
+                font-family="none"
+                font-weight="none"
+                font-size="none"
+                text-anchor="none"
+                style="mix-blend-mode: normal"
+              >
+                <g
+                  transform="translate(26.77527,-22.07183) rotate(11) scale(2.56,2.56)"
+                >
+                  <path
+                    d="M50,86c-4.963,0 -9,-4.038 -9,-9h18c0,4.962 -4.037,9 -9,9zM54.388,18c-0.455,-2.004 -2.247,-3.5 -4.388,-3.5c-2.141,0 -3.934,1.496 -4.388,3.5"
+                    fill="#eddc67"
+                  ></path>
+                  <path
+                    d="M79,67l-3.526,-28.795c-1.412,-11.536 -11.208,-20.205 -22.829,-20.205h-5.289c-11.621,0 -21.417,8.669 -22.829,20.205l-3.527,28.795c-2.761,0 -5,2.239 -5,5c0,2.761 2.239,5 5,5h58c2.761,0 5,-2.239 5,-5c0,-2.761 -2.239,-5 -5,-5z"
+                    fill="#f9e65c"
+                  ></path>
+                  <path
+                    d="M79.894,66.066l-3.428,-27.983c-1.39,-11.358 -10.614,-20.066 -21.843,-20.991c-0.758,-1.855 -2.556,-3.092 -4.623,-3.092c-2.067,0 -3.865,1.237 -4.622,3.092c-11.229,0.925 -20.454,9.633 -21.843,20.991l-3.428,27.983c-2.886,0.433 -5.107,2.929 -5.107,5.934c0,3.309 2.691,6 6,6h20.059c0.499,4.493 4.316,8 8.941,8c4.625,0 8.442,-3.507 8.941,-8h20.059c3.309,0 6,-2.691 6,-6c0,-3.005 -2.221,-5.501 -5.106,-5.934zM50,15c1.484,0 2.786,0.803 3.478,2.039c-0.279,-0.01 -0.553,-0.039 -0.833,-0.039h-5.289c-0.281,0 -0.555,0.029 -0.833,0.039c0.691,-1.236 1.993,-2.039 3.477,-2.039zM50,85c-4.072,0 -7.436,-3.06 -7.931,-7h15.861c-0.494,3.94 -3.858,7 -7.93,7zM79,76h-58c-2.206,0 -4,-1.794 -4,-4c0,-2.206 1.794,-4 4,-4h43.5c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5h-42.493l3.511,-28.674c1.35,-11.017 10.738,-19.326 21.837,-19.326h5.289c11.1,0 20.487,8.309 21.837,19.326l3.526,28.795c0.061,0.502 0.488,0.879 0.993,0.879c2.206,0 4,1.794 4,4c0,2.206 -1.794,4 -4,4z"
+                    fill="#1f212b"
+                  ></path>
+                  <path
+                    d="M75.5,67h-2c-0.276,0 -0.5,0.224 -0.5,0.5c0,0.276 0.224,0.5 0.5,0.5h2c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5zM71.5,67h-4c-0.276,0 -0.5,0.224 -0.5,0.5c0,0.276 0.224,0.5 0.5,0.5h4c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5z"
+                    fill="#1f212b"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </nav>
+
+        <!-- greetings tab -->
+        <div class="greetingsTab">
+          <p>Welcome back!</p>
+          <div>
+            <h1 class="userName"></h1>
+            <button class="investNow fundBtn">
+              Invest Now <span class="nav-arrow">&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- analytics section -->
+        <div class="analytics">
+          <div class="sideA">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="gray"
+              >
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                />
+              </svg>
+              <blockquote>
+                <p>Available balance</p>
+                <h2>$<span id="balance2"></span></h2>
+              </blockquote>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="gray"
+              >
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                />
+              </svg>
+              <blockquote>
+                <p>Current plan</p>
+                <h2 id="currentPlan"></h2>
+              </blockquote>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="gray"
+              >
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                />
+              </svg>
+              <blockquote>
+                <p>Amount invested</p>
+                <h2>$<span id="amtInvested"></span></h2>
+              </blockquote>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="gray"
+              >
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                />
+              </svg>
+              <blockquote>
+                <p>ROI</p>
+                <h2>$<span id="roi"></span></h2>
+              </blockquote>
+            </div>
+          </div>
+          <div class="sideB">
+            <p>Investment Progress</p>
+            <div class="progressDatesCont">
+              <div>
+                <p>Date invested</p>
+                <h4>2 February</h4>
+              </div>
+              <div>
+                <p>Cash out</p>
+                <h4>28 February</h4>
+              </div>
+            </div>
+            <div class="progressBarCont">
+              <div class="progressBar">90%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- plans and active investment -->
+        <div class="double-column">
+          <div class="activeInvestments">
+            <h2>Active Investments</h2>
+
+            <!-- <div class="box">
+              <div>
+                <h3>Starter</h3>
+                <p>12 Feb 2025</p>
+              </div>
+              <div>
+                <h3>
+                  <span>1000 </span
+                  ><small style="font-size: 12px; color: gray">USD</small>
+                </h3>
+                <p
+                  style="font-weight: bold; color: var(--blue); cursor: pointer"
+                >
+                  Show analytics
+                </p>
+              </div>
+            </div> -->
+          </div>
+          <div class="plans">
+            <h2>Investment Plans</h2>
+            <div class="box">
+              <h3 style="color: var(--ash)">Starter plan</h3>
+              <button style="background-color: var(--ash)">Buy</button>
+              <div class="options">
+                <div>
+                  <p>Invest <b>$100</b> get <b>$1200</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Starter"
+                    data-amount="100"
+                    data-roi="1200"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$200</b> get <b>$2800</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Starter"
+                    data-amount="200"
+                    data-roi="2800"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$300</b> get <b>$4500</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Starter"
+                    data-amount="300"
+                    data-roi="4500"
+                  >
+                    Select
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <h3 style="color: #cd7f32">Bronze plan</h3>
+              <button style="background-color: #cd7f32">Buy</button>
+              <div class="options">
+                <div>
+                  <p>Invest <b>$500</b> get <b>$7500</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Bronze"
+                    data-amount="500"
+                    data-roi="7500"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$600</b> get <b>$8000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Bronze"
+                    data-amount="600"
+                    data-roi="8000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$800</b> get <b>$9000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Bronze"
+                    data-amount="800"
+                    data-roi="9000"
+                  >
+                    Select
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <h3 style="color: #c0c0c0">Silver plan</h3>
+              <button style="background-color: #c0c0c0">Buy</button>
+              <div class="options">
+                <div>
+                  <p>Invest <b>$1000</b> get <b>$15000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Silver"
+                    data-amount="1000"
+                    data-roi="15000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$1500</b> get <b>$20,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Silver"
+                    data-amount="1500"
+                    data-roi="20000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$3000</b> get <b>$45,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Silver"
+                    data-amount="3000"
+                    data-roi="45000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$4000</b> get <b>$60,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Silver"
+                    data-amount="4000"
+                    data-roi="60000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$5000</b> get <b>$75,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Silver"
+                    data-amount="5000"
+                    data-roi="75000"
+                  >
+                    Select
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <h3 style="color: #2abcce">Veteran plan</h3>
+              <button style="background-color: #2abcce">Buy</button>
+              <div class="options">
+                <div>
+                  <p>Invest <b>$10000</b> get <b>$150,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Veteran"
+                    data-amount="10000"
+                    data-roi="150000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$20000</b> get <b>$300,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Veteran"
+                    data-amount="20000"
+                    data-roi="300000"
+                  >
+                    Select
+                  </p>
+                </div>
+                <div>
+                  <p>Invest <b>$50000</b> get <b>$800,000</b></p>
+                  <p
+                    class="btn purchasePlanBtn"
+                    data-plan="Veteran"
+                    data-amount="50000"
+                    data-roi="800000"
+                  >
+                    Select
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="popupModal" class="modal">
+          <div class="modal-content">
+            <div class="breadcrumb" id="breadcrumb"></div>
+
+            <h2 id="stepTitle">Step 1</h2>
+            <p id="stepDescription">This is the first step of the process.</p>
+
+            <div class="button-container">
+              <button class="btn" id="nextButton">Next</button>
+              <button class="btn hidden" id="closeButton">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="../js/dashboard/index.js"></script>
+  </body>
+</html>
+
+<!-- 
+<svg
+xmlns="http://www.w3.org/2000/svg"
+x="0px"
+y="0px"
+width="30"
+height="30"
+viewBox="0,0,256,256"
+>
+<g
+  fill-opacity="0.01176"
+  fill="#dddddd"
+  fill-rule="nonzero"
+  stroke="none"
+  stroke-width="1"
+  stroke-linecap="butt"
+  stroke-linejoin="miter"
+  stroke-miterlimit="10"
+  stroke-dasharray=""
+  stroke-dashoffset="0"
+  font-family="none"
+  font-weight="none"
+  font-size="none"
+  text-anchor="none"
+  style="mix-blend-mode: normal"
+>
+  <path d="M0,256v-256h256v256z" id="bgRectangle"></path>
+</g>
+<g
+  fill="#000000"
+  fill-rule="nonzero"
+  stroke="#000000"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-miterlimit="10"
+  stroke-dasharray=""
+  stroke-dashoffset="0"
+  font-family="none"
+  font-weight="none"
+  font-size="none"
+  text-anchor="none"
+  style="mix-blend-mode: normal"
+>
+  <g
+    transform="translate(26.77527,-22.07183) rotate(11) scale(2.56,2.56)"
+  >
+    <path
+      d="M50,14c-2.067,0 -3.86409,1.2368 -4.62109,3.0918c-11.229,0.925 -20.45475,9.63223 -21.84375,20.99023l-3.42773,27.98438c-2.886,0.433 -5.10742,2.92859 -5.10742,5.93359c0,3.309 2.691,6 6,6h20.05859c0.499,4.493 4.31641,8 8.94141,8c4.625,0 8.44241,-3.507 8.94141,-8h20.05859c3.309,0 6,-2.691 6,-6c0,-3.005 -2.22047,-5.50059 -5.10547,-5.93359l-3.42773,-27.98437c-1.39,-11.358 -10.61475,-20.06523 -21.84375,-20.99023c-0.758,-1.855 -2.55605,-3.0918 -4.62305,-3.0918zM50,15c1.484,0 2.78652,0.80306 3.47852,2.03906c-0.279,-0.01 -0.55398,-0.03906 -0.83398,-0.03906h-5.28906c-0.281,0 -0.55403,0.02906 -0.83203,0.03906c0.691,-1.236 1.99256,-2.03906 3.47656,-2.03906zM47.35547,19h5.28906c11.1,0 20.48594,8.30917 21.83594,19.32617l3.52734,28.79492c0.061,0.502 0.48719,0.87891 0.99219,0.87891c2.206,0 4,1.794 4,4c0,2.206 -1.794,4 -4,4h-58c-2.206,0 -4,-1.794 -4,-4c0,-2.206 1.794,-4 4,-4h43.5c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5h-42.49219l3.50977,-28.67383c1.35,-11.017 10.73889,-19.32617 21.83789,-19.32617zM67.5,67c-0.276,0 -0.5,0.224 -0.5,0.5c0,0.276 0.224,0.5 0.5,0.5h4c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5zM73.5,67c-0.276,0 -0.5,0.224 -0.5,0.5c0,0.276 0.224,0.5 0.5,0.5h2c0.276,0 0.5,-0.224 0.5,-0.5c0,-0.276 -0.224,-0.5 -0.5,-0.5zM42.06836,78h15.86133c-0.494,3.94 -3.85769,7 -7.92969,7c-4.072,0 -7.43664,-3.06 -7.93164,-7z"
+    ></path>
+  </g>
+</g>
+</svg> -->

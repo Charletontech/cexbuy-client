@@ -1,0 +1,69 @@
+/* Modal Background */
+.modal {
+  text-align: center;
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  width: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Breadcrumb Steps */
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.step {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: lightgray;
+  color: #333;
+  font-weight: bold;
+}
+
+.step.active {
+  background: #007bff;
+  color: white;
+}
+
+/* Button Styles */
+.button-container {
+  margin-top: 20px;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.hidden {
+  display: none;
+}

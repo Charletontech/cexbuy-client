@@ -1,0 +1,56 @@
+/* general styling */
+.double-column {
+  width: 100%;
+  height: auto;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.activeInvestments,
+.plans {
+  width: 50%;
+  height: auto;
+}
+
+/* for active investments only */
+.activeInvestments {
+  padding: 15px;
+  color: var(--text-ash);
+}
+
+.activeInvestments h2 {
+  margin-bottom: 1rem;
+}
+
+.activeInvestments .box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #dbdfea;
+  border-radius: 10px;
+  padding: 15px;
+  /* box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 1rem;
+}
+
+.activeInvestments h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.activeInvestments p {
+  font-size: 0.8em;
+  color: var(--text-ash);
+}
+
+@media (max-width: 720px) {
+  .double-column {
+    flex-direction: column;
+  }
+
+  .activeInvestments,
+  .plans {
+    width: 100%;
+  }
+}

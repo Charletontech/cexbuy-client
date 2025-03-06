@@ -1,0 +1,104 @@
+.steps {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.steps h1 {
+  font-size: 3rem;
+  color: var(--ash);
+}
+
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  max-width: 700px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.feature {
+  padding: 20px;
+  position: relative;
+}
+
+/* Creating the thin line effect */
+.feature::after,
+.feature::before {
+  content: "";
+  position: absolute;
+  background-color: #ccc;
+}
+
+/* Right and bottom borders for the tile effect */
+.feature::after {
+  width: 1px;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
+.feature::before {
+  height: 1px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+/* Remove lines on last column and last row */
+.features-container .feature:nth-child(2n)::after {
+  display: none;
+}
+.features-container .feature:nth-last-child(-n + 2)::before {
+  display: none;
+}
+
+.feature img {
+  width: 40px;
+  height: 40px;
+}
+
+.feature h3 {
+  margin: 10px 0;
+  color: var(--ash);
+}
+
+.feature p {
+  font-size: 14px;
+  color: #666;
+}
+
+.feature a {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--ash);
+  /* font-weight: bold; */
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .features-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features-container .feature:nth-child(2n)::after {
+    display: block;
+  }
+  .features-container .feature:nth-child(2n)::after {
+    display: none;
+  }
+  .features-container .feature:nth-last-child(-n + 2)::before {
+    display: block;
+  }
+  .features-container .feature:nth-last-child(-n + 2)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-container {
+    grid-template-columns: 1fr;
+  }
+}

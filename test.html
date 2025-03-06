@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Step Popup</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+      }
+
+      /* Modal Background */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      /* Modal Content */
+      .modal-content {
+        background: white;
+        width: 400px;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Breadcrumb Steps */
+      .breadcrumb {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .step {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin: 0 5px;
+        border-radius: 50%;
+        background: lightgray;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .step.active {
+        background: #007bff;
+        color: white;
+      }
+
+      /* Button Styles */
+      .button-container {
+        margin-top: 20px;
+      }
+
+      .btn {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      .btn:hover {
+        background: #0056b3;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="openModal()">Start Process</button>
+
+    <!-- Modal -->
+    <div id="popupModal" class="modal">
+      <div class="modal-content">
+        <div class="breadcrumb" id="breadcrumb"></div>
+
+        <h2 id="stepTitle">Step 1</h2>
+        <p id="stepDescription">This is the first step of the process.</p>
+
+        <div class="button-container">
+          <button class="btn" onclick="nextStep()" id="nextButton">Next</button>
+          <button class="btn hidden" onclick="closeModal()" id="closeButton">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const steps = [
+        {
+          title: "Step 1",
+          description: "This is the first step of the process.",
+        },
+        {
+          title: "Step 2",
+          description: "Provide your details for verification.",
+        },
+        {
+          title: "Step 3",
+          description: "Review your information before proceeding.",
+        },
+        { title: "Step 4", description: "Your process is complete!" },
+      ];
+
+      let currentStep = 0;
+
+      function openModal() {
+        document.getElementById("popupModal").style.display = "block";
+        updateStep();
+      }
+
+      function closeModal() {
+        document.getElementById("popupModal").style.display = "none";
+        currentStep = 0; // Reset steps when closed
+      }
+
+      function updateStep() {
+        document.getElementById("stepTitle").innerText =
+          steps[currentStep].title;
+        document.getElementById("stepDescription").innerText =
+          steps[currentStep].description;
+
+        // Update breadcrumbs
+        const breadcrumbContainer = document.getElementById("breadcrumb");
+        breadcrumbContainer.innerHTML = "";
+        steps.forEach((_, index) => {
+          const stepElement = document.createElement("div");
+          stepElement.classList.add("step");
+          if (index === currentStep) stepElement.classList.add("active");
+          stepElement.innerText = index + 1;
+          breadcrumbContainer.appendChild(stepElement);
+        });
+
+        // Update buttons
+        const nextButton = document.getElementById("nextButton");
+        const closeButton = document.getElementById("closeButton");
+
+        if (currentStep === steps.length - 1) {
+          nextButton.classList.add("hidden");
+          closeButton.classList.remove("hidden");
+        } else {
+          nextButton.classList.remove("hidden");
+          closeButton.classList.add("hidden");
+        }
+      }
+
+      function nextStep() {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          updateStep();
+        }
+      }
+    </script>
+  </body>
+</html>
