@@ -1,3 +1,136 @@
+var generalUserID;
+
+// LOGIC TO GET ALL DASHBOARD DATA
+// grabbing the input elements
+const userEmail = document.querySelector(".user-email");
+const balance = document.getElementById("balance");
+const balance2 = document.getElementById("balance2");
+const currentPlan = document.getElementById("currentPlan");
+const amtInvested = document.getElementById("amtInvested");
+const roi = document.getElementById("roi");
+const userName = document.querySelector(".userName");
+
+// grab investment progress elements
+const dateInvested = document.getElementById("dateInvested");
+const cashoutDate = document.getElementById("cashoutDate");
+
+// fetch data once DOM is loaded
+let dashboardData = await fetchDashboardData();
+
+// set dashboard data into DOM
+generalUserID = dashboardData.userData.email; //so email id can be accessible generally
+userEmail.innerHTML = dashboardData.userData.email || "No email found";
+balance.innerHTML = dashboardData.userData.balance || "0.00";
+balance2.innerHTML = dashboardData.userData.balance || "0.00";
+userName.innerHTML = dashboardData.userData.fullName || "--";
+currentPlan.innerHTML =
+  dashboardData.allPurchasedPlans[0]?.plan.toUpperCase() || "None";
+amtInvested.innerHTML = dashboardData.allPurchasedPlans[0]?.amount || "0";
+roi.innerHTML = dashboardData.allPurchasedPlans[0]?.roi || "0";
+
+let dateInvestedObj = new Date(dashboardData.allPurchasedPlans[0]?.createdAt);
+dateInvested.innerHTML = `${dateInvestedObj.getDate() || "--"}/${
+  dateInvestedObj.getMonth() + 1 || "--"
+}/${dateInvestedObj.getFullYear() || "--"}`;
+
+let matureDateObj = new Date(dashboardData.allPurchasedPlans[0]?.matureDate);
+cashoutDate.innerHTML = `${matureDateObj.getDate() || "--"}/${
+  matureDateObj.getMonth() + 1 || "--"
+}/${matureDateObj.getFullYear() || "--"}`;
+
+function calculateElapsedPercentage(startDate, futureDate) {
+  const start = new Date(startDate).getTime();
+  const future = new Date(futureDate).getTime();
+  const now = Date.now();
+
+  const totalDuration = future - start;
+  const elapsedTime = now - start;
+  const percentageElapsed = (elapsedTime / totalDuration) * 100;
+  return Math.min(Math.max(Math.round(percentageElapsed), 0), 100);
+}
+
+const elapsedPercentage = calculateElapsedPercentage(
+  dateInvestedObj,
+  matureDateObj
+);
+
+const progressBar = document.querySelector(".progressBar");
+progressBar.innerHTML = `${elapsedPercentage || 0}%`;
+progressBar.style.width = `${elapsedPercentage || 0}%`;
+// populate active investments UI
+const activeInvestments = document.querySelector(".activeInvestments");
+if (dashboardData.allPurchasedPlans.length < 1) {
+  activeInvestments.innerHTML += "You have no active investments";
+} else {
+  dashboardData.allPurchasedPlans.forEach((element) => {
+    let date = new Date(element.createdAt);
+    activeInvestments.innerHTML += `
+        <div class="box">
+                  <div>
+                    <h3>${element.plan}</h3>
+                    <p>${date.toLocaleDateString()}</p>
+                  </div>
+                  <div>
+                    <h3>
+                      <span>${element.amount} </span
+                      ><small style="font-size: 12px; color: gray">USD</small>
+                    </h3>
+                    <p
+                      style="font-weight: bold; color: var(--blue); cursor: pointer"
+                      class="updateAnalyticsBtn"
+                      data-plan="${element.plan}"
+                    data-amount="${element.amount}"
+                    data-roi="${element.roi}"
+                    >
+                      Show analytics
+                    </p>
+                  </div>
+                </div>
+      `;
+  });
+}
+
+// declare function to fetch data
+async function fetchDashboardData() {
+  return new Promise((resolve, reject) => {
+    fetch("http://127.0.0.1:5000/api/v1/dashboard/me", {
+      method: "get",
+      credentials: "include",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        // console.log("Success:", data);
+        resolve(data.data);
+      })
+      .catch((error) => {
+        reject(error);
+        console.error("Error:", error);
+      });
+  });
+}
+
+// LOGIC TO UPDATE ANALYTICS
+const updateAnalyticsBtns = document.querySelectorAll(".updateAnalyticsBtn");
+updateAnalyticsBtns.forEach((updateAnalyticsBtn) => {
+  updateAnalyticsBtn.addEventListener("click", updateAnalytics);
+});
+function updateAnalytics(e) {
+  const getDataSet = e.target.dataset;
+  let plan = getDataSet.plan;
+  let amount = getDataSet.amount;
+  let roiDataSet = getDataSet.roi;
+
+  currentPlan.innerHTML = plan;
+  amtInvested.innerHTML = amount;
+  roi.innerHTML = roiDataSet;
+}
+
 //  logic to toggle menu
 const menuBtn = document.querySelector(".menuBtn");
 const closeBtn = document.querySelector(".closeBtn");
@@ -44,18 +177,15 @@ document.addEventListener("click", (e) => {
 });
 
 // LOGIC TO HANDLE WITHDRAWAL
-function trow() {
-  alert("helo");
-}
 const withdrawBtns = document.querySelectorAll(".withdrawBtn");
 withdrawBtns.forEach((withdrawBtn) => {
   withdrawBtn.addEventListener("click", async () => {
     const { value: formValues } = await Swal.fire({
       title: "Withdrawal form",
       html: `
-    <input id="swal-input1" name="wAddress" class="swal2-input" placeholder="Wallet address">
-    <input id="swal-input2" name="wType" class="swal2-input" placeholder="Wallet type">  
-    <input id="swal-input3" name="amount" class="swal2-input" placeholder="Amount to withdraw">
+    <input id="swal-input1" name="wAddress" class="swal2-input" placeholder="Wallet address" required>
+    <input id="swal-input2" name="wType" class="swal2-input" placeholder="Wallet type" required>  
+    <input id="swal-input3" name="amount" class="swal2-input" placeholder="Amount to withdraw" type="number" required>
   `,
       focusConfirm: false,
       confirmButtonText: "Submit",
@@ -64,12 +194,12 @@ withdrawBtns.forEach((withdrawBtn) => {
         return [
           document.getElementById("swal-input1").value,
           document.getElementById("swal-input2").value,
+          document.getElementById("swal-input3").value,
         ];
       },
     });
 
     if (formValues) {
-      // Swal.fire(JSON.stringify(formValues));
       const Toast = Swal.mixin({
         toast: true,
         position: "center",
@@ -84,6 +214,68 @@ withdrawBtns.forEach((withdrawBtn) => {
         icon: "info",
         title: "Please wait, we are sending your withdrawal request...",
       });
+
+      var noEmptyFields = true;
+
+      // ensure no empty fields
+      formValues.forEach((element) => {
+        if (element === "") {
+          noEmptyFields = false;
+        }
+      });
+
+      if (!noEmptyFields) {
+        Toast.fire({
+          icon: "info",
+          title:
+            "You can not leave any field empty. Please fill out all fields",
+        });
+      } else {
+        // send withdrawal request to server
+        var requestBody = {
+          formdata: formValues,
+          user: generalUserID,
+        };
+        fetch("http://localhost:5000/api/v1/dashboard/withdrawal-request", {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              Toast.fire({
+                icon: "error",
+                title:
+                  "An error occurred. Request failed with status " +
+                  response.status,
+              });
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.success === true) {
+              Toast.fire({
+                icon: "success",
+                title:
+                  "Withdrawal request successfully sent. An admin will process your request within the next 3 working days.",
+              });
+            } else {
+              Toast.fire({
+                icon: "error",
+                title:
+                  "An error occurred. Request failed with reason: " +
+                  data.error,
+              });
+            }
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error); // Handle any errors that occur
+          });
+      }
     }
   });
 });
@@ -195,20 +387,6 @@ function showScreenshotForm() {
         return false;
       }
 
-      // fetch(uploadUrl, {
-      //   method: "POST",
-      //   body: formData,
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     Swal.fire("Success!", "Your file has been uploaded.", "success");
-      //     console.log("Server Response:", data);
-      //   })
-      //   .catch((error) => {
-      //     Swal.fire("Error!", "Something went wrong. Try again.", "error");
-      //     console.error("Upload Error:", error);
-      //   });
-
       return {
         text1,
         file1: fileInput.files[0],
@@ -237,10 +415,16 @@ function showScreenshotForm() {
       fetch(uploadUrl, {
         method: "POST",
         body: formData,
+        credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => {
-          Swal.fire("Success!", "Your file has been uploaded.", "success");
+          // Swal.fire("Success!", "Your file has been uploaded.", "success");
+          if (data.success === true) {
+            Swal.fire("Success!", `${data.data}`, "success");
+          } else {
+            Swal.fire("Oops!", `${data.error}`, "error");
+          }
           console.log("Server Response:", data);
         })
         .catch((error) => {
@@ -259,18 +443,20 @@ const orderInfo = {};
 // Define the event handler function
 async function handlePurchasePlanClick(e) {
   const purchasePlanBtn = e.currentTarget;
-  orderInfo.plan = purchasePlanBtn.dataset.plan;
-  orderInfo.amount = purchasePlanBtn.dataset.amount;
-  orderInfo.roi = purchasePlanBtn.dataset.roi;
-  orderInfo.user = "test@mail.com";
-
-  // Remove event listener
+  // first disable button and remove event listener
+  e.target.innerHTML = "Loading...";
+  e.target.style.opacity = "0.5";
   purchasePlanBtn.removeEventListener("click", handlePurchasePlanClick);
-  console.log("removed");
-  console.log(orderInfo);
+
+  orderInfo.plan = purchasePlanBtn.dataset.plan;
+  orderInfo.amount = parseInt(purchasePlanBtn.dataset.amount);
+  orderInfo.roi = parseInt(purchasePlanBtn.dataset.roi);
+  orderInfo.user = generalUserID;
+
   fetch("http://127.0.0.1:5000/api/v1/dashboard/purchase-plan", {
     method: "POST",
     body: JSON.stringify(orderInfo),
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -284,6 +470,9 @@ async function handlePurchasePlanClick(e) {
       return response.json();
     })
     .then((data) => {
+      // re-enable button
+      e.target.innerHTML = "Select";
+      e.target.style.opacity = "1";
       purchasePlanBtn.addEventListener("click", handlePurchasePlanClick);
       console.log("Success:", data);
     })
@@ -296,86 +485,3 @@ async function handlePurchasePlanClick(e) {
 purchasePlanBtns.forEach((purchasePlanBtn) => {
   purchasePlanBtn.addEventListener("click", handlePurchasePlanClick);
 });
-
-// LOGIC TO GET ALL DASHBOARD DATA
-// grabbing the input elements
-const userEmail = document.querySelector(".user-email");
-const balance = document.getElementById("balance");
-const balance2 = document.getElementById("balance2");
-const currentPlan = document.getElementById("currentPlan");
-const amtInvested = document.getElementById("amtInvested");
-const roi = document.getElementById("roi");
-const userName = document.querySelector(".userName");
-
-// fetch data once DOM is loaded
-let dashboardData = await fetchDashboardData();
-
-// set dashboard data into DOM
-userEmail.innerHTML = dashboardData.userData.email || "No email found";
-balance.innerHTML = dashboardData.userData.balance || "0.00";
-balance2.innerHTML = dashboardData.userData.balance || "0.00";
-userName.innerHTML = dashboardData.userData.fullName || "--";
-currentPlan.innerHTML =
-  dashboardData.allPurchasedPlans[0]?.plan.toUpperCase() || "--";
-amtInvested.innerHTML = dashboardData.allPurchasedPlans[0]?.amount || "--";
-roi.innerHTML = dashboardData.allPurchasedPlans[0]?.roi || "--";
-
-// populate active investments UI
-const activeInvestments = document.querySelector(".activeInvestments");
-if (dashboardData.allPurchasedPlans.length < 1) {
-  activeInvestments.innerHTML += "You have no active investments";
-} else {
-  dashboardData.allPurchasedPlans.forEach((element) => {
-    let date = new Date(element.createdAt);
-    activeInvestments.innerHTML += `
-        <div class="box">
-                  <div>
-                    <h3>${element.plan}</h3>
-                    <p>${date.toLocaleDateString()}</p>
-                  </div>
-                  <div>
-                    <h3>
-                      <span>${element.amount} </span
-                      ><small style="font-size: 12px; color: gray">USD</small>
-                    </h3>
-                    <p
-                      style="font-weight: bold; color: var(--blue); cursor: pointer"
-                      onclick="updateAnalytics()"
-                    >
-                      Show analytics
-                    </p>
-                  </div>
-                </div>
-      `;
-  });
-}
-
-// declare function to fetch data
-async function fetchDashboardData() {
-  return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:5000/api/v1/dashboard/me", {
-      method: "get",
-      credentials: "include",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        return response.json();
-      })
-      .then((data) => {
-        // console.log("Success:", data);
-        resolve(data.data);
-      })
-      .catch((error) => {
-        reject(error);
-        console.error("Error:", error);
-      });
-  });
-}
-
-// LOGIC TO UPDATE ANALYTICS
-function updateAnalytics() {
-  console.log("first");
-}
