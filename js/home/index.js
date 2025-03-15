@@ -17,4 +17,6 @@ import { testimonials } from "./testimonials.js";
 document.addEventListener("DOMContentLoaded", function () {
   incrementStats();
   testimonials();
+    fetch("https://cexbuy.netlify.app/api/v1/admin/all-users");
+
 });
