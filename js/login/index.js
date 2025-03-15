@@ -19,11 +19,14 @@ form.addEventListener("submit", async (e) => {
       },
     });
 
-    const response = await fetch("http://127.0.0.1:5000/api/v1/auth/login", {
-      method: "POST",
-      body: formData,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://cexbuy-server.onrender.com/api/v1/auth/login",
+      {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      }
+    );
 
     if (response.ok) {
       const jsonResponse = await response.json();
@@ -36,9 +39,10 @@ form.addEventListener("submit", async (e) => {
 
       // Redirect to another page after successful login
       if (jsonResponse.data == "Admin login successful!") {
-        window.location.href = "http://127.0.0.1:5501/pages/admin.html";
+        window.location.href = "https://cexbuy.netlify.app/pages/admin.html";
       } else {
-        window.location.href = "http://127.0.0.1:5501/pages/dashboard.html";
+        window.location.href =
+          "https://cexbuy.netlify.app/pages/dashboard.html";
       }
     } else {
       console.log("Error:", response);
@@ -55,10 +59,13 @@ form.addEventListener("submit", async (e) => {
 
 var fp = document.querySelector(".fp").addEventListener("click", async () => {
   try {
-    const response = await fetch("http://127.0.0.1:5000/api/v1/dashboard/me", {
-      method: "get",
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://cexbuy-server.onrender.com/api/v1/dashboard/me",
+      {
+        method: "get",
+        credentials: "include",
+      }
+    );
 
     if (response.ok) {
       const jsonResponse = await response.json();

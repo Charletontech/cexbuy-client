@@ -17,10 +17,13 @@ form.addEventListener("submit", async (e) => {
         toast.addEventListener("mouseleave", Swal.resumeTimer);
       },
     });
-    const response = await fetch("http://127.0.0.1:5000/api/v1/auth/register", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      "http://cexbuy-server.onrender.com/api/v1/auth/register",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     if (response.ok) {
       const jsonResponse = await response.json();

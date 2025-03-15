@@ -1,7 +1,7 @@
 // Simulated data (You would get this data from an API endpoint)
 async function fetchUsersData() {
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/api/v1/admin/all-users", {
+    fetch("https://cexbuy-server.onrender.com/api/v1/admin/all-users", {
       method: "get",
       credentials: "include",
     })
@@ -49,7 +49,7 @@ function updateBalance(email) {
   const payload = { email, newBalance };
   // console.log("Updating balance for", email, "to", newBalance);
   // sending request to server
-  fetch("http://localhost:5000/api/v1/admin/edit-user-balance", {
+  fetch("https://cexbuy-server.onrender.com/api/v1/admin/edit-user-balance", {
     method: "post",
     body: JSON.stringify(payload),
     headers: {
@@ -76,7 +76,7 @@ function updateBalance(email) {
 // plan data - from an API endpoint
 async function fetchPlansData() {
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/api/v1/admin/all-plans", {
+    fetch("https://cexbuy-server.onrender.com/api/v1/admin/all-plans", {
       method: "get",
       credentials: "include",
     })
@@ -120,10 +120,13 @@ populatePlansTable();
 // withdrawal requests data
 async function fetchWithdrawalRequestsData() {
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/api/v1/admin/all-withdrawal-requests", {
-      method: "get",
-      credentials: "include",
-    })
+    fetch(
+      "https://cexbuy-server.onrender.com/api/v1/admin/all-withdrawal-requests",
+      {
+        method: "get",
+        credentials: "include",
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -183,14 +186,17 @@ function updateWithdrawalStatus(id, email) {
   // console.log(`Withdrawal status for ${email} updated to ${newStatus}`);
 
   // Simulate sending request to server
-  fetch("http://localhost:5000/api/v1/admin/update-withdrawal-status", {
-    method: "post",
-    body: JSON.stringify({ id, newStatus }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
+  fetch(
+    "https://cexbuy-server.onrender.com/api/v1/admin/update-withdrawal-status",
+    {
+      method: "post",
+      body: JSON.stringify({ id, newStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -210,10 +216,13 @@ function updateWithdrawalStatus(id, email) {
 // wallet funding requests data
 async function fetchFundWalletRequestsData() {
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/api/v1/admin/all-fund-wallet-requests", {
-      method: "get",
-      credentials: "include",
-    })
+    fetch(
+      "https://cexbuy-server.onrender.com/api/v1/admin/all-fund-wallet-requests",
+      {
+        method: "get",
+        credentials: "include",
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -272,14 +281,17 @@ function updateFundingStatus(email, id) {
   const newStatus = document.getElementById(`funding-status-${email}`).value;
   // console.log(`Wallet funding status for ${email} updated to ${newStatus}`);
   // Simulate sending request to server
-  fetch("http://localhost:5000/api/v1/admin/update-fund-wallet-status", {
-    method: "post",
-    body: JSON.stringify({ id, newStatus }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
+  fetch(
+    "https://cexbuy-server.onrender.com/api/v1/admin/update-fund-wallet-status",
+    {
+      method: "post",
+      body: JSON.stringify({ id, newStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

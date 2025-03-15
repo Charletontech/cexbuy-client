@@ -3,7 +3,7 @@ export function testimonials() {
     {
       img: "./assets/f130000b-d954-44f0-bba3-ae763b16d3a6_removalai_preview.png",
       quote:
-        "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam est urna, vulputate sit amet orci non, tempus vehicula lectus. Mauris non nisl purus. Suspendisse placerat, quis convallis diam.”",
+        "“CexBuy has transformed my finances! I earn passive income effortlessly, and their investment strategies are top-notch.”",
       author: "Stephen H.",
       location: "Manchester, UK",
     },
@@ -17,7 +17,7 @@ export function testimonials() {
     {
       img: "./assets/1.png",
       quote:
-        "“An excellent experience from start to finish. Would use this service again without hesitation!”",
+        "“Reliable, transparent, and profitable—I’ve seen steady growth in my portfolio with CexBuy. Was skeptical at first, but i'm glad i took my chances!”",
       author: "David P.",
       location: "Sydney, Australia",
     },
