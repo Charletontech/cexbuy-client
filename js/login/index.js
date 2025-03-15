@@ -35,7 +35,11 @@ form.addEventListener("submit", async (e) => {
       });
 
       // Redirect to another page after successful login
-      window.location.href = "http://127.0.0.1:5501/pages/dashboard.html";
+      if (jsonResponse.data == "Admin login successful!") {
+        window.location.href = "http://127.0.0.1:5501/pages/admin.html";
+      } else {
+        window.location.href = "http://127.0.0.1:5501/pages/dashboard.html";
+      }
     } else {
       console.log("Error:", response);
 
