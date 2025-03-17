@@ -18,7 +18,7 @@ form.addEventListener("submit", async (e) => {
       },
     });
     const response = await fetch(
-      "http://cexbuy-server.onrender.com/api/v1/auth/register",
+      "https://cexbuy-server.onrender.com/api/v1/auth/register",
       {
         method: "POST",
         body: formData,
