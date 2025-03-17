@@ -93,7 +93,7 @@ if (dashboardData.allPurchasedPlans.length < 1) {
 // declare function to fetch data
 async function fetchDashboardData() {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:5000/api/v1/dashboard/me", {
+    fetch("https://cexbuy-server.onrender.com/api/v1/dashboard/me", {
       method: "get",
       credentials: "include",
     })
@@ -236,7 +236,7 @@ withdrawBtns.forEach((withdrawBtn) => {
           formdata: formValues,
           user: generalUserID,
         };
-        fetch("http://localhost:5000/api/v1/dashboard/withdrawal-request", {
+        fetch("https://cexbuy-server.onrender.com/api/v1/dashboard/withdrawal-request", {
           method: "POST",
           body: JSON.stringify(requestBody),
           credentials: "include",
@@ -402,7 +402,7 @@ function showScreenshotForm() {
       formData.append("file", result.value.file1);
 
       // Replace with your actual upload URL
-      const uploadUrl = "http://127.0.0.1:5000/api/v1/dashboard/upload-receipt";
+      const uploadUrl = "https://cexbuy-server.onrender.com/api/v1/dashboard/upload-receipt";
 
       Swal.fire({
         title: "Uploading...",
@@ -453,7 +453,7 @@ async function handlePurchasePlanClick(e) {
   orderInfo.roi = parseInt(purchasePlanBtn.dataset.roi);
   orderInfo.user = generalUserID;
 
-  fetch("http://127.0.0.1:5000/api/v1/dashboard/purchase-plan", {
+  fetch("https://cexbuy-server.onrender.com/api/v1/dashboard/purchase-plan", {
     method: "POST",
     body: JSON.stringify(orderInfo),
     credentials: "include",
