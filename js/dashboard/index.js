@@ -327,6 +327,15 @@ function closeModal() {
 }
 
 function updateStep() {
+  // logic to show wallets at step 1
+  var walletsList = document.querySelector(".walletsList");
+  if (currentStep === 0 ) {
+    walletsList.style.display = "initial";
+  } else {
+    walletsList.style.display = "none";
+  }
+
+  
   document.getElementById("stepTitle").innerText = steps[currentStep].title;
   document.getElementById("stepDescription").innerText =
     steps[currentStep].description;
