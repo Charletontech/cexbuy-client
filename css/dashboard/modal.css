@@ -12,6 +12,18 @@
 }
 
 /* Modal Content */
+.walletsList {
+  display: none;
+}
+
+.walletsList div {
+  margin-top: 0.6rem;
+}
+
+.walletsList i {
+  font-size: 0.8em;
+}
+
 .modal-content {
   background: white;
   width: 400px;
