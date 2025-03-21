@@ -1,3 +1,20 @@
+/* Basic styles for the chat icon */
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.chat-icon img {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
 .video-container {
   position: relative;
   width: 100%;
