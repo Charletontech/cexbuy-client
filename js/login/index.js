@@ -39,10 +39,10 @@ form.addEventListener("submit", async (e) => {
 
       // Redirect to another page after successful login
       if (jsonResponse.data == "Admin login successful!") {
-        window.location.href = "https://cexbuy.netlify.app/pages/admin.html";
+        window.location.href = "https://cexbuy.online/pages/admin.html";
       } else {
         window.location.href =
-          "https://cexbuy.netlify.app/pages/dashboard.html";
+          "https://cexbuy.online/pages/dashboard.html";
       }
     } else {
       console.log("Error:", response);
