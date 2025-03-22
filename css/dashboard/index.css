@@ -26,6 +26,21 @@
   --blue: #007bff;
 }
 
+/* Basic styles for the chat icon */
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.chat-icon img {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 .mainFrame {
   width: 100%;
   height: 100vh;
